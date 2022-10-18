@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="">
+        <link rel="stylesheet" href="{% static 'depart_wagons/css/css.css' %}">
+        <title>Рассылка информации об уведомлениях</title>
+    </head>
+    <body>
+        <header>
+            <h1>Рассылка клиентам информации по передаче уведомлений о готовности вагонов на выставочном пути</h1>
+        </header>
+       
+        <aside>
+            <a href="{% url 'sending' %}" class="GlassButton">Рассылка</a>
+            <a href="{% url 'list_view' %}" class="GlassButton">Справочник email</a>
+        </aside>
+        <br>
+        <main>
+            <div class="patient_list">
+                {% block patient %}
+                {% endblock %}
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+{% extends 'depart_wagons/layout.html' %}
+
+{% block patient %}
+<table class="table">
+    <caption></caption>
+    <thead>
+      <tr>
+        <th scope="col">Наименование</th>
+        <th scope="col">Почтовый ящик</th>
+        <th scope="col">Автоматическая рассылка</th>
+        <th scope="col">Администратор</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for el in object_list %}
+                <tr style="cursor: pointer;">
+                    <td>{{ el.name }}</td>
+                    <td>{{ el.email }}</td>
+                    <td>
+                       {% if el.send %} 
+                        да
+                       {% else %}
+                        нет
+                       {% endif %}
+                    </td>
+                    <td>
+                        {% if el.admin %} 
+                         да
+                        {% else %}
+                         нет
+                        {% endif %}
+                     </td>                    
+                </tr>
+        {% empty %}
+            <br>
+            <font size="5" color="FireBrick"><i>Нет записей</i></font>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

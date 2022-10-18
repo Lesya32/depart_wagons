@@ -1,0 +1,43 @@
+{% extends 'depart_wagons/layout.html' %}
+
+{% block patient %}
+<form method="post">
+{% csrf_token %}
+<table class="table">
+    <caption></caption>
+    <thead>
+      <tr>
+        <th scope="col">Выбрать для рассылки</th>
+        <th scope="col">Наименование</th>
+        <th scope="col">Почтовый ящик</th>
+        <th scope="col">Автоматическая рассылка</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% for cl in clients %}
+                <tr style="cursor: pointer;">
+                    <td>
+                        <input type="checkbox" value="{{ cl.id_client }}" id="{{ cl.id_client }}" name="check_client">  
+                    </td>                     
+                    <td>{{ cl.name }}</td>
+                    <td>{{ cl.email }}</td>
+                    <td>
+                       {% if cl.send %} 
+                        да
+                       {% else %}
+                        нет
+                       {% endif %}
+                    </td>
+                  
+                </tr>
+        {% empty %}
+            <br>
+            <font size="5" color="FireBrick"><i>Нет записей</i></font>
+        {% endfor %}
+    </tbody>
+</table>
+<button type="submit" name="choose" class="custom-btn btn-13">Выбрать</button>
+<button type="submit" name="choose" class="custom-btn btn-13">Отправить</button>
+</form>
+{% endblock %}
